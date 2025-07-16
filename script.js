@@ -7,7 +7,7 @@ async function getPlayerData() {
     return;
   }
 
-  const url = `https://api.manarion.com/players/${encodeURIComponent(nameID)}`;
+  const url = `https://corsproxy.io/?https://api.manarion.com/players/${encodeURIComponent(nameID)}`;
   output.innerText = "Fetching data...";
 
   try {
