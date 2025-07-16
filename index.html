@@ -2,15 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Meow's TS Manarion Caclulator</title>
+  <title>Manarion Player Lookup</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Meow's Manarion Calculator</h1>
-  <input id="nameID" type="text" placeholder="Enter your name or ID">
-  <input id="actionsValue" type="number" value="28800" placeholder="Enter your name or ID">
-  <button onclick="calculate()">Update Data</button>
-  <p id="output"></p>
+  <h1>Manarion Player Lookup</h1>
+  
+  <input id="nameID" type="text" placeholder="Enter Name or ID">
+  <button onclick="getPlayerData()">Fetch Player Data</button>
+  
+  <div id="output">Player data will appear here...</div>
 
   <script src="script.js"></script>
 </body>
