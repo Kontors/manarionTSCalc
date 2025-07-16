@@ -1,5 +1,19 @@
 body {
-  font-family: sans-serif;
+  font-family: Arial, sans-serif;
   padding: 2em;
-  background: #f2f2f2;
+  background-color: #f2f2f2;
+}
+
+input, button {
+  padding: 0.5em;
+  font-size: 1em;
+}
+
+#output {
+  margin-top: 1em;
+  white-space: pre-wrap;
+  background: #fff;
+  padding: 1em;
+  border-radius: 8px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
 }
