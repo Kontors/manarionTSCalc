@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Manarion Player Lookup</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <h1>Manarion Player Lookup</h1>
-  
-  <input id="nameID" type="text" placeholder="Enter Name or ID">
-  <button onclick="getPlayerData()">Fetch Player Data</button>
-  
-  <div id="output">Player data will appear here...</div>
+
+  <div class="tabs">
+    <button id="tabBtn1" class="active" onclick="openTab('tab1', this)">Player Data</button>
+    <button id="tabBtn2" onclick="openTab('tab2', this)">Market Data</button>
+  </div>
+
+  <div id="tab1" class="tabcontent active">
+    <input id="nameID" type="text" placeholder="Enter Name or ID" />
+    <button onclick="getPlayerData()">Fetch Player Data</button>
+
+    <div id="output">Player data will appear here...</div>
+  </div>
+
+  <div id="tab2" class="tabcontent">
+    <h2>Market Prices</h2>
+    <button onclick="getMarketData()">Load Market Data</button>
+    <div id="marketOutput">Market data will appear here...</div>
+  </div>
 
   <script src="script.js"></script>
 </body>
