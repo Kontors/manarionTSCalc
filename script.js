@@ -23,11 +23,11 @@ async function getPlayerData() {
       <h2>Basic Info</h2>
       <table>
         <tr><th>Name</th><td>${data.Name}</td></tr>
-        <tr><th>Level</th><td>${data.Level}</td></tr>
-        <tr><th>Zone</th><td>${data.Zone}</td></tr>
-        <tr><th>Magic Type</th><td>${data.MagicType}</td></tr>
+        <tr><th>Battling Level</th><td>${data.Level}</td></tr>
+        <tr><th>Mining Level</th><td>${data.MiningLevel}</td></tr>
+        <tr><th>Fishing Level</th><td>${data.FishingLevel}</td></tr>
+        <tr><th>Woodcutting Level</th><td>${data.WoodcuttingLevel}</td></tr>
         <tr><th>Action Type</th><td>${data.ActionType}</td></tr>
-        <tr><th>Sigil Boost</th><td>${data.SigilBoost}</td></tr>
       </table>
     `;
 
@@ -37,9 +37,6 @@ async function getPlayerData() {
       <table>
         <tr><th>Kills</th><td>${data.Kills}</td></tr>
         <tr><th>Deaths</th><td>${data.Deaths}</td></tr>
-        <tr><th>Mining Level</th><td>${data.MiningLevel}</td></tr>
-        <tr><th>Fishing Level</th><td>${data.FishingLevel}</td></tr>
-        <tr><th>Woodcutting Level</th><td>${data.WoodcuttingLevel}</td></tr>
         <tr><th>Gather Actions</th><td>${data.GatherActions.toLocaleString()}</td></tr>
         <tr><th>Event Actions</th><td>${data.EventActions.toLocaleString()}</td></tr>
         <tr><th>Event Points</th><td>${data.EventPoints.toLocaleString(undefined, {maximumFractionDigits: 2})}</td></tr>
