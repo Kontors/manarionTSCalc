@@ -1,3 +1,80 @@
+// Boost mappings
+const boostMap = {
+  1: "Base Spellpower",
+  2: "Base Ward",
+  3: "Intellect",
+  4: "Stamina",
+  5: "Focus",
+  6: "Spirit",
+  7: "Mana",
+  8: "Spellpower Value",
+  9: "Ward Value",
+  10: "Fire Mastery",
+  11: "Water Mastery",
+  12: "Nature Mastery",
+  21: "Fire Spell Rank",
+  22: "Water Spell Rank",
+  23: "Nature Spell Rank",
+  24: "Mana Shield Rank",
+  30: "Mining",
+  31: "Fishing",
+  32: "Woodcutting",
+  40: "Damage",
+  41: "Multicast",
+  42: "Crit Chance",
+  43: "Crit Damage",
+  44: "Haste",
+  45: "Health",
+  46: "Ward",
+  47: "Focus",
+  48: "Mana",
+  49: "Overload",
+  50: "Time Dilation",
+  80: "Inferno Value",
+  81: "Tidal Wrath Value",
+  82: "Wildheart Value",
+  83: "Fire Resistance Value",
+  84: "Water Resistance Value",
+  85: "Nature Resistance Value",
+  86: "Vitality Value",
+  100: "Base Experience",
+  101: "Base Mana Dust",
+  102: "Drop Boost",
+  103: "Multistat",
+  105: "Actions",
+  106: "Base Resource",
+  107: "Quest Boost",
+  108: "Potion Boost",
+  109: "Ascension",
+  120: "Battle Experience Boost",
+  121: "Mana Dust Boost",
+  122: "Elemental Shard Boost",
+  123: "Stat Drop",
+  124: "Base Resource Amount",
+  130: "Farm Harvest Golem",
+  131: "Farm Fertilizer",
+  132: "Farm Plots",
+  133: "Potion Belt"
+};
+
+const enchant_upgrades = {
+  60: "Enchant Inferno Rank",
+  61: "Enchant Tidal Wrath Rank",
+  62: "Enchant Wildheart Rank",
+  63: "Enchant Fire Resistance Rank",
+  64: "Enchant Water Resistance Rank",
+  65: "Enchant Nature Resistance Rank",
+  66: "Enchant Insight Rank",
+  67: "Enchant Bountiful Harvest Rank",
+  68: "Enchant Prosperity Rank",
+  69: "Enchant Fortune Rank",
+  70: "Enchant Growth Rank",
+  71: "Enchant Vitality Rank",
+};
+
+// Combine both maps for easy lookup
+const allBoosts = { ...boostMap, ...enchant_upgrades };
+
 async function getPlayerData() {
   const nameID = document.getElementById("nameID").value.trim();
   const output = document.getElementById("output");
@@ -18,7 +95,7 @@ async function getPlayerData() {
 
     const data = await response.json();
 
-    // Build Basic Info table
+    // Basic Info Table
     const basicInfoTable = `
       <h2>Basic Info</h2>
       <table>
@@ -31,7 +108,7 @@ async function getPlayerData() {
       </table>
     `;
 
-    // Build Stats table
+    // Stats Table
     const statsTable = `
       <h2>Stats</h2>
       <table>
@@ -43,22 +120,24 @@ async function getPlayerData() {
       </table>
     `;
 
-    // Build Boosts Summary table - show some key totals (e.g. keys 1,2,3, etc. from TotalBoosts)
-    // We'll pick a few important boost keys to display (customize as needed)
-    const importantBoostKeys = [1,2,3,4,5,6,7,8,9,10];
-    const boostsRows = importantBoostKeys.map(key => {
-      const val = data.TotalBoosts[key] !== undefined ? data.TotalBoosts[key] : "N/A";
-      return `<tr><th>Boost ${key}</th><td>${val}</td></tr>`;
+    // Boost Keys sorted
+    const boostKeysToShow = Object.keys(allBoosts).map(Number).sort((a, b) => a - b);
+
+    // Build Boosts Table with friendly names
+    const boostsRows = boostKeysToShow.map(key => {
+      const val = data.TotalBoosts && data.TotalBoosts[key] !== undefined ? data.TotalBoosts[key] : "N/A";
+      const name = allBoosts[key] || `Boost ${key}`;
+      return `<tr><th>${name}</th><td>${val}</td></tr>`;
     }).join("");
 
     const boostsTable = `
-      <h2>Total Boosts (summary)</h2>
+      <h2>Total Boosts (Detailed)</h2>
       <table>
         ${boostsRows}
       </table>
     `;
 
-    // Combine all tables
+    // Combine and display all tables
     output.innerHTML = basicInfoTable + statsTable + boostsTable;
 
   } catch (error) {
